@@ -4,9 +4,16 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
 
   var deployggb = document.createElement('script')
   deployggb.onload = function () {
-    var applet = new GGBApplet({material_id:"XXXXX"})
+    var applet = new GGBApplet({
+      material_id:"XXXXX",
+      appletOnLoad: function(api) {
+        api.registerObjectUpdateListener('grade', function() {
+          /* TODO */
+        })
+      }
+    })
     applet.inject('ggb-element');
-    const api = applet.getAppletObject()
+    // const api = applet.getAppletObject()
   }
   deployggb.src = 'https://www.geogebra.org/apps/deployggb.js'
   document.head.appendChild(deployggb);
