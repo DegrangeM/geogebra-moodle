@@ -1,13 +1,21 @@
-if (typeof window.LearningAppsMoodleElements === 'undefined') {
+if (typeof window.GeogebraMoodleElements === 'undefined') {
   // Normalement ce script ne devrait être chargé qu'une unique fois car appelé en module
   // On vérifie tout de même au cas où que le fichier ne soit pas appelé en module
-  window.LearningAppsMoodleElements = []
+
+  var deployggb = document.createElement('script')
+  deployggb.onload = function () {
+      //do stuff with the script
+  }
+  deployggb.src = 'https://www.geogebra.org/apps/deployggb.js'
+  document.head.appendChild(deployggb);
+
+  window.GeogebraMoodleElements = []
 
   window.addEventListener('message', (event) => {
     if (typeof event.data == 'string' && event.data.startsWith('AppChecked|')) {
       const iMoodle = 0
-      if (typeof window.LearningAppsMoodleElements[iMoodle] !== 'undefined') {
-        const iframe = window.LearningAppsMoodleElements[iMoodle]
+      if (typeof window.GeogebraMoodleElements[iMoodle] !== 'undefined') {
+        const iframe = window.GeogebraMoodleElements[iMoodle]
         const datas = event.data.split('|')
         if (datas[3]) { // AppChecked|Name|Time|S;c;o;r;e|UserId?
           const scores = datas[3].split(';')
@@ -26,10 +34,10 @@ if (typeof window.LearningAppsMoodleElements === 'undefined') {
   })
 
   const style = document.createElement('style')
-  style.innerHTML = '.learningapps-question-type .form-inline, .learningapps-question-type .im-controls, .learningapps-question-type .rightanswer { display: none; }'
+  style.innerHTML = '.geogebra-question-type .form-inline, .geogebra-question-type .im-controls, .geogebra-question-type .rightanswer { display: none; }'
   document.head.appendChild(style)
 
-  class LearningAppsMoodle extends HTMLElement {
+  class GeogebraMoodle extends HTMLElement {
     connectedCallback() {
       let APP_ID
       try {
@@ -40,7 +48,7 @@ if (typeof window.LearningAppsMoodleElements === 'undefined') {
 
       const shadow = this.attachShadow({ mode: 'open' }) // this.shadowRoot
 
-      const iMoodle = window.LearningAppsMoodleElements.length
+      const iMoodle = window.GeogebraMoodleElements.length
 
       let questionDiv = this.parentNode
       // On remonte de parent en parent depuis la balise script jusqu'à trouver le div avec le numero de la question en id
@@ -56,15 +64,15 @@ if (typeof window.LearningAppsMoodleElements === 'undefined') {
         return
       }
 
-      questionDiv.classList.add('learningapps-question-type')
+      questionDiv.classList.add('geogebra-question-type')
 
       const iframe = document.createElement('iframe')
       this.iframe = iframe
-      window.LearningAppsMoodleElements.push(this)
+      window.GeogebraMoodleElements.push(this)
 
       iframe.setAttribute('width', '100%')
       iframe.style.height = '80vh'
-      iframe.setAttribute('src', 'https://learningapps.org/watch?app=' + APP_ID)
+      iframe.setAttribute('src', 'https://geogebra.org/watch?app=' + APP_ID)
       iframe.setAttribute('frameBorder', '0')
       iframe.setAttribute('allow', 'fullscreen')
 
@@ -82,7 +90,7 @@ if (typeof window.LearningAppsMoodleElements === 'undefined') {
         this.afficherPopupDejaFait()
       } else {
         if (iMoodle > 0) {
-          alert('Attention, il y a déjà une intégration de LearningApps sur la page')
+          alert('Attention, il y a déjà une intégration de Geogebra sur la page')
         }
         
         shadow.appendChild(iframe)
@@ -98,5 +106,5 @@ if (typeof window.LearningAppsMoodleElements === 'undefined') {
   }
 
   // Define the new element
-  customElements.define('learningapps-moodle', LearningAppsMoodle)
+  customElements.define('geogebra-moodle', GeogebraMoodle)
 }
