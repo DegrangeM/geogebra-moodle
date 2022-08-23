@@ -6,7 +6,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
   deployggb.onload = function () {
     var applet = new GGBApplet({material_id:"XXXXX"})
     applet.inject('ggb-element');
-    const api = ggb.getAppletObject()
+    const api = applet.getAppletObject()
   }
   deployggb.src = 'https://www.geogebra.org/apps/deployggb.js'
   document.head.appendChild(deployggb);
