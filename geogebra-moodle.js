@@ -35,6 +35,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
 
   const style = document.createElement('style')
   style.innerHTML = '.geogebra-question-type .form-inline, .geogebra-question-type .im-controls, .geogebra-question-type .rightanswer { display: none; }'
+  style.innerHTML += '.geogebracontainer { width:100% !important; overflow: hidden; }'
   document.head.appendChild(style)
 
   class GeogebraMoodle extends HTMLElement {
@@ -67,6 +68,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       questionDiv.classList.add('geogebra-question-type')
 
       const iframe = document.createElement('div')
+      iframe.classList.add('geogebracontainer')
       this.iframe = iframe
       window.GeogebraMoodleElements.push(this)
 
@@ -92,8 +94,13 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         /* Le script geogebra est-il chargé ? A VERIFIER */
           var applet = new GGBApplet({
           id: "geogebra-moodle-" + iMoodle,
+          // scaleContainerClass: 'geogebracontainer',
+          // autoHeight: true,
+          width: iframe.offsetWidth,
           material_id: APP_ID,
+          showFullScreenButton: true,
           appletOnLoad: function(api) {
+            api.setWidth(iframe.offsetWidth);
             api.registerObjectUpdateListener('grade', function() {
               const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
               console.log('SCOREEEEE', moodleScore)
