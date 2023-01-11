@@ -8,7 +8,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       material_id:"XXXXX",
       appletOnLoad: function(api) {
         api.registerObjectUpdateListener('grade', function() {
-          /* TODO */
+          const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
         })
       }
     })
