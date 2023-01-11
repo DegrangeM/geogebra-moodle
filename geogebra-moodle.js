@@ -4,15 +4,14 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
 
   var deployggb = document.createElement('script')
   deployggb.onload = function () {
-    
-    // const api = applet.getAppletObject()
+    customElements.define('geogebra-moodle', GeogebraMoodle)
   }
   deployggb.src = 'https://www.geogebra.org/apps/deployggb.js'
   document.head.appendChild(deployggb);
 
   window.GeogebraMoodleElements = []
 
-  window.addEventListener('message', (event) => {
+  /*window.addEventListener('message', (event) => {
     if (typeof event.data == 'string' && event.data.startsWith('AppChecked|')) {
       const iMoodle = 0
       if (typeof window.GeogebraMoodleElements[iMoodle] !== 'undefined') {
@@ -32,7 +31,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         }
       }
     }
-  })
+  })*/
 
   const style = document.createElement('style')
   style.innerHTML = '.geogebra-question-type .form-inline, .geogebra-question-type .im-controls, .geogebra-question-type .rightanswer { display: none; }'
@@ -91,7 +90,6 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         this.appendChild(iframe)
 
         /* Le script geogebra est-il chargé ? A VERIFIER */
-        setTimeout(() => {
           var applet = new GGBApplet({
           id: "geogebra-moodle-" + iMoodle,
           material_id: APP_ID,
@@ -103,7 +101,6 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
           }
         });
         applet.inject(iframe);
-        }, 3000)
       }
 
     }
@@ -115,6 +112,5 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
     static get observedAttributes() { return ['height'] }
   }
 
-  // Define the new element
-  customElements.define('geogebra-moodle', GeogebraMoodle)
+
 }
