@@ -101,10 +101,11 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
           showFullScreenButton: true,
           appletOnLoad: (api) => {
             api.setWidth(iframe.offsetWidth);
-            api.registerObjectUpdateListener('grade', function() {
+            api.registerObjectUpdateListener('grade', () => {
               const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
-              iframe.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
-              iframe.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
+              console.log(moodleScore)
+              this.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
+              this.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
             });
           }
         });
