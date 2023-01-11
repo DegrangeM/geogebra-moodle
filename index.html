@@ -12,13 +12,14 @@
     <div style="opacity:0.35;">
         URL du script <code>learningapps-moodle.js</code> (ne pas modifier sauf cas particulier) :<br />
         <!--<input type="url" id="script_url" value="https://cdn.jsdelivr.net/gh/DegrangeM/learningapps-moodle/learningapps-moodle.js" size="100" /><br /><br />-->
-        <input type="url" id="script_url" value="http://127.0.0.1:5500/geogebra-moodle.js" size="100" /><br /><br />
+        <!--<input type="url" id="script_url" value="http://127.0.0.1:5500/geogebra-moodle.js" size="100" /><br /><br />-->
+        <input type="url" id="script_url" value="https://degrangem.github.io/geogebra-moodle/geogebra-moodle.js" size="100" /><br /><br />
     </div>
     Titre de la question dans moodle :<br />
     <input type="text" id="titre_exo" placeholder="Ce que vous voulez" size="100" /><br /><br />
     URL du lien de l'application :<br />
     <input type="text" id="url_exo"
-        placeholder="https://learningapps.org/watch?v=XXXXXX"
+        placeholder="https://www.geogebra.org/m/XXXXXX"
         size="100" /><br /><br />
     <button id="download">Obtenir le fichier GIFT à importer dans la banque de question Moodle</button>
     <script>
@@ -27,11 +28,11 @@
                 const giftEscape = s => s.replace(/[~=#{}:]/g, '\\$&') // échappement des caratères spéciaux pour les GIFT
                 const script_url = document.getElementById('script_url').value;
                 const url_exo = new URL(document.getElementById('url_exo').value).href;
-                const APP_ID = url_exo.match(/https:\/\/www.geogebra.org\/m\/(.*)$/)[1]
+                const APP_ID = url_exo.match(/https:\/\/www.geogebra.org\/(?:m|classic)\/(.*)$/)[1]
                 const titre_exo = document.getElementById('titre_exo').value;
 
                 const download_link = document.createElement('a');
-                const GIFT = `:: LearningApps - ${giftEscape(titre_exo)} ::
+                const GIFT = `:: Geogebra - ${giftEscape(titre_exo)} ::
 <scr`+ `ipt src\\="${giftEscape(script_url)}" type\\="module"></scr` + `ipt>
 <geogebra-moodle app\\="${giftEscape(APP_ID)}" />
 {
@@ -56,7 +57,7 @@
     </div>-->
     <div style="border-left:5px solid #ade6ad; padding-left:20px;">
         <h2>Que faire du fichier GIFT obtenu ?</h2>
-        Voir ici : <a href="https://github.com/DegrangeM/learningapps-moodle/blob/master/README.md#g%C3%A9n%C3%A9ration-du-fichier-gift">https://github.com/DegrangeM/learningapps-moodle/blob/master/README.md#g%C3%A9n%C3%A9ration-du-fichier-gift</a>
+        Voir ici : <a href="https://github.com/DegrangeM/geogebra-moodle/blob/master/README.md#g%C3%A9n%C3%A9ration-du-fichier-gift">https://github.com/DegrangeM/learningapps-moodle/blob/master/README.md#g%C3%A9n%C3%A9ration-du-fichier-gift</a>
     </div>
 </body>
 </html>
