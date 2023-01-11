@@ -95,6 +95,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
             this.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
             this.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
           });
+          api.setAuxiliary('grade', true);
         };
       }
         this.appendChild(iframe)
