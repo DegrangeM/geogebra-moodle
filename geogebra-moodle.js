@@ -103,7 +103,6 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
             api.setWidth(iframe.offsetWidth);
             api.registerObjectUpdateListener('grade', () => {
               const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
-              console.log(moodleScore)
               this.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
               this.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
             });
