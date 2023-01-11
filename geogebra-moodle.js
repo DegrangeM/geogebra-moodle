@@ -4,15 +4,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
 
   var deployggb = document.createElement('script')
   deployggb.onload = function () {
-    var applet = new GGBApplet({
-      material_id:"XXXXX",
-      appletOnLoad: function(api) {
-        api.registerObjectUpdateListener('grade', function() {
-          const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
-        })
-      }
-    })
-    applet.inject('ggb-element');
+    
     // const api = applet.getAppletObject()
   }
   deployggb.src = 'https://www.geogebra.org/apps/deployggb.js'
@@ -55,9 +47,9 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         PAGE_URL = 'data:text,' + e
       }
 
-      const shadow = this.attachShadow({ mode: 'open' }) // this.shadowRoot
+      // const shadow = this.attachShadow({ mode: 'open' }) // this.shadowRoot
 
-      const iMoodle = window.GeogebraMoodleElements.length
+      const iMoodle = window.GeogebraMoodleElements.length;
 
       let questionDiv = this.parentNode
       // On remonte de parent en parent depuis la balise script jusqu'à trouver le div avec le numero de la question en id
@@ -75,15 +67,9 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
 
       questionDiv.classList.add('geogebra-question-type')
 
-      const iframe = document.createElement('iframe')
+      const iframe = document.createElement('div')
       this.iframe = iframe
       window.GeogebraMoodleElements.push(this)
-
-      iframe.setAttribute('width', '100%')
-      iframe.style.height = '80vh'
-      iframe.setAttribute('src', 'https://geogebra.org/watch?app=' + APP_ID)
-      iframe.setAttribute('frameBorder', '0')
-      iframe.setAttribute('allow', 'fullscreen')
 
       this.afficherPopupDejaFait = () => {
         iframe.style.pointerEvents = 'none'
@@ -101,8 +87,23 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         if (iMoodle > 0) {
           alert('Attention, il y a déjà une intégration de Geogebra sur la page')
         }
-        
-        shadow.appendChild(iframe)
+
+        this.appendChild(iframe)
+
+        /* Le script geogebra est-il chargé ? A VERIFIER */
+        setTimeout(() => {
+          var applet = new GGBApplet({
+          id: "geogebra-moodle-" + iMoodle,
+          material_id: APP_ID,
+          appletOnLoad: function(api) {
+            api.registerObjectUpdateListener('grade', function() {
+              const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
+              console.log('SCOREEEEE', moodleScore)
+            });
+          }
+        });
+        applet.inject(iframe);
+        }, 3000)
       }
 
     }
