@@ -103,7 +103,8 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
             api.setWidth(iframe.offsetWidth);
             api.registerObjectUpdateListener('grade', function() {
               const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
-              console.log('SCOREEEEE', moodleScore)
+              iframe.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
+              iframe.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
             });
           }
         });
