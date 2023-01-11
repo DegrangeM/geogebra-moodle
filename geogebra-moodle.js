@@ -99,7 +99,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
           width: iframe.offsetWidth,
           material_id: APP_ID,
           showFullScreenButton: true,
-          appletOnLoad: function(api) {
+          appletOnLoad: (api) => {
             api.setWidth(iframe.offsetWidth);
             api.registerObjectUpdateListener('grade', function() {
               const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
