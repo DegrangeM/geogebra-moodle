@@ -47,6 +47,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         PAGE_URL = 'data:text,' + e
       }
 
+      // Geogebra n'accepte pas les shadowRoot
       // const shadow = this.attachShadow({ mode: 'open' }) // this.shadowRoot
 
       const iMoodle = window.GeogebraMoodleElements.length;
@@ -73,43 +74,40 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       window.GeogebraMoodleElements.push(this)
 
       this.afficherPopupDejaFait = () => {
-        iframe.style.pointerEvents = 'none'
-        iframe.style.filter = 'blur(5px)'
+        this.style.pointerEvents = 'none'
+        this.style.filter = 'blur(5px)'
         const successMessage = document.createElement('div');
         successMessage.textContent = 'Vous avez déjà effectué cet exercice';
         successMessage.setAttribute('style', 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: lightgreen;padding: 10px;border: 1px solid green;color: green;');
-        shadow.appendChild(iframe)
-        shadow.appendChild(successMessage)
+        this.appendChild(iframe)
+        this.appendChild(successMessage)
       }
-
+      
+      let appletOnLoad;
       if (!questionDiv.classList.contains('notyetanswered')) {
         this.afficherPopupDejaFait()
+        appletOnLoad = (api) => {};
       } else {
-        if (iMoodle > 0) {
-          alert('Attention, il y a déjà une intégration de Geogebra sur la page')
-        }
-
+        appletOnLoad = (api) => {
+          api.setWidth(iframe.offsetWidth);
+          api.registerObjectUpdateListener('grade', () => {
+            const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
+            this.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
+            this.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
+          });
+        };
+      }
         this.appendChild(iframe)
-
-        /* Le script geogebra est-il chargé ? A VERIFIER */
-          var applet = new GGBApplet({
+        var applet = new GGBApplet({
           id: "geogebra-moodle-" + iMoodle,
           // scaleContainerClass: 'geogebracontainer',
           // autoHeight: true,
           width: iframe.offsetWidth,
           material_id: APP_ID,
           showFullScreenButton: true,
-          appletOnLoad: (api) => {
-            api.setWidth(iframe.offsetWidth);
-            api.registerObjectUpdateListener('grade', () => {
-              const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
-              this.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
-              this.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
-            });
-          }
+          appletOnLoad
         });
         applet.inject(iframe);
-      }
 
     }
 
