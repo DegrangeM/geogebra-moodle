@@ -87,7 +87,6 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       if (!questionDiv.classList.contains('notyetanswered')) {
         this.afficherPopupDejaFait()
         appletOnLoad = (api) => {
-          api.showMenuBar(false);
         };
       } else {
         appletOnLoad = (api) => {
@@ -98,7 +97,6 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
             this.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
           });
           api.setAuxiliary('grade', true);
-          api.showMenuBar(false);
         };
       }
         this.appendChild(iframe)
