@@ -90,7 +90,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         };
       } else {
         appletOnLoad = (api) => {
-          api.setWidth(iframe.offsetWidth);
+          // api.setWidth(iframe.offsetWidth);
           api.registerObjectUpdateListener('grade', () => {
             const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
             this.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
@@ -101,9 +101,9 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       }
         var applet = new GGBApplet({
           id: "geogebra-moodle-" + iMoodle,
-          // scaleContainerClass: 'geogebracontainer',
+          scaleContainerClass: 'geogebracontainer',
           // autoHeight: true,
-          width: iframe.offsetWidth,
+          // width: iframe.offsetWidth,
           material_id: APP_ID,
           showFullScreenButton: true,
           appletOnLoad
