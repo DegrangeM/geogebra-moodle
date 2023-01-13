@@ -74,9 +74,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       window.GeogebraMoodleElements.push(this)
 
       this.afficherPopupDejaFait = () => {
-        this.iframe.pointerEvents = 'none'
-        this.iframe.filter = 'blur(5px)'
-        iframe.classList.add('geogebra-blur')
+        iframe.classList.add('geogebra-blur') // geogebra va retirer le style, il faut passer par une classe
         const successMessage = document.createElement('div');
         successMessage.textContent = 'Vous avez déjà effectué cet exercice';
         successMessage.setAttribute('style', 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: lightgreen;padding: 10px;border: 1px solid green;color: green;');
