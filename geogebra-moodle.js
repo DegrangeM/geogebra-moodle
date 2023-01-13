@@ -78,7 +78,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         this.iframe.filter = 'blur(5px)'
         const successMessage = document.createElement('div');
         successMessage.textContent = 'Vous avez déjà effectué cet exercice';
-        successMessage.setAttribute('style', 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: lightgreen;padding: 10px;border: 1px solid green;color: green;');
+        successMessage.setAttribute('style', 'z-index: 999; position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: lightgreen;padding: 10px;border: 1px solid green;color: green;');
         this.appendChild(successMessage)
       }
       
