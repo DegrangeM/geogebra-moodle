@@ -35,7 +35,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
 
   const style = document.createElement('style')
   style.innerHTML = '.geogebra-question-type .form-inline, .geogebra-question-type .im-controls, .geogebra-question-type .rightanswer { display: none; }'
-  style.innerHTML += '.geogebracontainer { width:100% !important; overflow: hidden; }'
+  style.innerHTML += '.geogebracontainer { width:100% !important; overflow: hidden; } .geogebra-blur { filter: blur(5px); pointer-events: none; }'
   document.head.appendChild(style)
 
   class GeogebraMoodle extends HTMLElement {
@@ -76,6 +76,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       this.afficherPopupDejaFait = () => {
         this.iframe.pointerEvents = 'none'
         this.iframe.filter = 'blur(5px)'
+        iframe.classList.add('geogebra-blur')
         const successMessage = document.createElement('div');
         successMessage.textContent = 'Vous avez déjà effectué cet exercice';
         successMessage.setAttribute('style', 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);background-color: lightgreen;padding: 10px;border: 1px solid green;color: green;');
