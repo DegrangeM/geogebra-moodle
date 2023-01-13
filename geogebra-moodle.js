@@ -35,7 +35,7 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
 
   const style = document.createElement('style')
   style.innerHTML = '.geogebra-question-type .form-inline, .geogebra-question-type .im-controls, .geogebra-question-type .rightanswer { display: none; }'
-  style.innerHTML += '.geogebracontainer { width:100% !important; overflow: hidden; } .geogebra-blur { filter: blur(5px); pointer-events: none; }'
+  style.innerHTML += '.geogebracontainer { max-width:100% !important; overflow: hidden; } .geogebra-blur { filter: blur(5px); pointer-events: none; }'
   document.head.appendChild(style)
 
   class GeogebraMoodle extends HTMLElement {
