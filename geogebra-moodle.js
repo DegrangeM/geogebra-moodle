@@ -82,6 +82,8 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         this.appendChild(successMessage)
       }
       
+      this.appendChild(iframe)
+      
       let appletOnLoad;
       if (!questionDiv.classList.contains('notyetanswered')) {
         this.afficherPopupDejaFait()
@@ -98,7 +100,6 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
           api.setAuxiliary('grade', true);
         };
       }
-        this.appendChild(iframe)
         var applet = new GGBApplet({
           id: "geogebra-moodle-" + iMoodle,
           // scaleContainerClass: 'geogebracontainer',
