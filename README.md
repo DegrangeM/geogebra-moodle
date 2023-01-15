@@ -1,4 +1,4 @@
-# LearningApps-Moodle
+# Geogebra-Moodle
 
 **Ce projet n'est pas un projet officiel de Geogebra. Il s'agit d'un projet indépendant.**
 
