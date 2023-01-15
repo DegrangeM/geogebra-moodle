@@ -43,7 +43,7 @@
                 const variable = document.getElementById('variable').value || 'grade';
                 const maxscore = document.getElementById('maxscore').value || 100;
                 const GIFT_VARIABLE = variable !== 'grade' ? ` variable\\="${giftEscape(variable)}"` : '';
-                const GIFT_MAXSCORE = maxscore !== 100 ? ` maxscore\\="${giftEscape(maxscore)}"` : '';
+                const GIFT_MAXSCORE = maxscore !== 100 ? ` maxscore\\="${maxscore}"` : '';
 
                 const download_link = document.createElement('a');
                 const GIFT = `:: Geogebra - ${giftEscape(titre_exo)} ::
