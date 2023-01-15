@@ -21,6 +21,16 @@
     <input type="text" id="url_exo"
         placeholder="https://www.geogebra.org/m/XXXXXX"
         size="100" /><br /><br />
+    <div style="display:flex;">
+        <div style="margin-right: 50px;">
+            Nom de la variable Geogebra :<br />
+            <input type="text" id="variable" value="grade" /><br /><br />
+        </div>
+        <div>
+            Score maximum de la variable Geogebra :<br />
+            <input type="number" id="maxscore" value="100" /><br /><br />
+        </div>
+    </div>
     <button id="download">Obtenir le fichier GIFT à importer dans la banque de question Moodle</button>
     <script>
         document.getElementById('download').addEventListener('click', function () {
@@ -30,11 +40,15 @@
                 const url_exo = new URL(document.getElementById('url_exo').value).href;
                 const APP_ID = url_exo.match(/https:\/\/www.geogebra.org\/(?:m|classic)\/(.*)$/)[1]
                 const titre_exo = document.getElementById('titre_exo').value;
+                const variable = document.getElementById('variable').value || 'grade';
+                const maxscore = document.getElementById('maxscore').value || 100;
+                const GIFT_VARIABLE = variable !== 'grade' ? ` variable\\="${giftEscape(variable)}"` : '';
+                const GIFT_MAXSCORE = maxscore !== 100 ? ` maxscore\\="${giftEscape(maxscore)}"` : '';
 
                 const download_link = document.createElement('a');
                 const GIFT = `:: Geogebra - ${giftEscape(titre_exo)} ::
 <scr`+ `ipt src\\="${giftEscape(script_url)}" type\\="module"></scr` + `ipt>
-<geogebra-moodle app\\="${giftEscape(APP_ID)}" />
+<geogebra-moodle app\\="${giftEscape(APP_ID)}"${GIFT_VARIABLE}${GIFT_MAXSCORE} />
 {
 =%100%100=%90%90=%80%80=%70%70=%60%60=%50%50=%40%40=%30%30=%20%20=%10%10=%0%0
 }`

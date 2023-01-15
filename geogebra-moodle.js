@@ -47,6 +47,9 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
         PAGE_URL = 'data:text,' + e
       }
 
+      const VARIABLE = this.getAttribute('variable') || 'grade';
+      const MAXSCORE = this.getAttribute('maxscore') || 100;
+
       // Geogebra n'accepte pas les shadowRoot
       // const shadow = this.attachShadow({ mode: 'open' }) // this.shadowRoot
 
@@ -91,12 +94,18 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       } else {
         appletOnLoad = (api) => {
           // api.setWidth(iframe.offsetWidth);
-          api.registerObjectUpdateListener('grade', () => {
-            const moodleScore = Math.round(api.getValue('grade') / 10) * 10;
+          api.registerObjectUpdateListener(VARIABLE, () => {
+            /*
+              SCORE / MAXSCORE => [0, 1]
+              (SCORE/MAXSCORE) * 10 => [0, 10]
+              ARRONDI(SCORE/MAXSCORE) => {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+              ARRONDI(SCORE/MAXSCORE) * 10 => {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
+            */
+            const moodleScore = Math.round((api.getValue(VARIABLE) / MAXSCORE) * 10) * 10;
             this.parentNode.parentNode.querySelector('[name$="_answer"]').value = moodleScore
             this.parentNode.parentNode.querySelector('[name$="_-submit"]')?.click()
           });
-          api.setAuxiliary('grade', true);
+          api.setAuxiliary(VARIABLE, true);
         };
       }
         var applet = new GGBApplet({
