@@ -6,7 +6,7 @@ Ce projet vous permet d'intégrer des exercices auto-corrigé créé sous Geogeb
 
 Il existe déjà deux plugins Moodle permettant cela. L'un permet de créer des activités Geogebra, l'autre des questions de type Geogebra. Mon projet permet de créer des question de type Geogebra, mais ne nécessite aucune installation de plugin.
 
-![image](https://user-images.githubusercontent.com/53106394/212564487-b0396499-a03c-485c-9042-95ffd15e2106.png)
+![image](https://user-images.githubusercontent.com/53106394/212564735-9c4db43c-1cc0-45bd-8be7-b19c889c1969.png)
 
 ## Création du fichier Geogebra
 
