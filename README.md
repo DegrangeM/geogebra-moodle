@@ -2,6 +2,10 @@
 
 **Ce projet n'est pas un projet officiel de Geogebra. Il s'agit d'un projet indépendant.**
 
+Ce projet vous permet d'intégrer des exercices auto-corrigé créé sous Geogebra directement dans Moodle. Une variable `grade` contenant le score sur 100 doit alors être créé dans Geogebra. 
+
+Il existe déjà deux plugins Moodle permettant cela. L'un permet de créer des activités Geogebra, l'autre des questions de type Geogebra. Mon projet permet de créer des question de type Geogebra, mais ne nécessite aucune installation de plugin.
+
 ![image](https://user-images.githubusercontent.com/53106394/212564487-b0396499-a03c-485c-9042-95ffd15e2106.png)
 
 ## Création du fichier Geogebra
