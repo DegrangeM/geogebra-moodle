@@ -4,13 +4,17 @@
 
 Ce projet vous permet d'intégrer des exercices auto-corrigé créé sous Geogebra directement dans Moodle. Une variable `grade` contenant le score sur 100 doit alors être créé dans Geogebra. 
 
-Il existe déjà deux plugins Moodle permettant cela. L'un permet de créer des activités Geogebra, l'autre des questions de type Geogebra. Mon projet permet de créer des question de type Geogebra, mais ne nécessite aucune installation de plugin.
+Il existe déjà deux plugins Moodle permettant cela. L'un permet de créer des activités Geogebra, l'autre des questions de type Geogebra. Mon projet permet de créer des questions de type Geogebra, mais ne nécessite aucune installation de plugin.
 
 ![image](https://user-images.githubusercontent.com/53106394/212564735-9c4db43c-1cc0-45bd-8be7-b19c889c1969.png)
 
-## Création du fichier Geogebra
+## Obtention de l'exercice Géogebra
 
-A rédiger ...
+Vous pouvez au choix créer vous même l'exercice ou bien prendre un exercice déjà tout fait compatible moodle :
+
+- [Création d'un exercice Geogebra](https://github.com/DegrangeM/geogebra-moodle/wiki/Cr%C3%A9ation-d'un-exercice-Geogebra)
+
+- [Banque d'exercices déjà créés](https://github.com/DegrangeM/geogebra-moodle/wiki/Banque-d'exercices-d%C3%A9j%C3%A0-cr%C3%A9%C3%A9s)
 
 ## Génération du fichier GIFT
 
