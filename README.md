@@ -10,7 +10,7 @@ Il existe déjà deux plugins Moodle permettant cela. L'un permet de créer des 
 
 ## Obtention de l'exercice Géogebra
 
-Vous pouvez au choix créer vous même l'exercice ou bien prendre un exercice déjà tout fait compatible moodle :
+Vous pouvez au choix créer vous même l'exercice ou bien prendre un exercice déjà fait compatible moodle :
 
 - [Création d'un exercice Geogebra](https://github.com/DegrangeM/geogebra-moodle/wiki/Cr%C3%A9ation-d'un-exercice-Geogebra)
 
