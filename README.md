@@ -8,7 +8,7 @@ Il existe déjà deux plugins Moodle permettant cela. L'un permet de créer des 
 
 ![image](https://user-images.githubusercontent.com/53106394/212564735-9c4db43c-1cc0-45bd-8be7-b19c889c1969.png)
 
-## Obtention de l'exercice Géogebra
+## Obtention de l'exercice Geogebra
 
 Vous pouvez au choix créer vous même l'exercice ou bien prendre un exercice déjà fait compatible moodle :
 
