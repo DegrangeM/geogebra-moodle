@@ -4,13 +4,17 @@
 
 Ce projet vous permet d'intégrer des exercices auto-corrigé créé sous Geogebra directement dans Moodle. Une variable `grade` contenant le score sur 100 doit alors être créé dans Geogebra. 
 
-Il existe déjà deux plugins Moodle permettant cela. L'un permet de créer des activités Geogebra, l'autre des questions de type Geogebra. Mon projet permet de créer des question de type Geogebra, mais ne nécessite aucune installation de plugin.
+Il existe déjà deux plugins Moodle permettant cela. L'un permet de créer des activités Geogebra, l'autre des questions de type Geogebra. Mon projet permet de créer des questions de type Geogebra, mais ne nécessite aucune installation de plugin.
 
 ![image](https://user-images.githubusercontent.com/53106394/212564735-9c4db43c-1cc0-45bd-8be7-b19c889c1969.png)
 
-## Création du fichier Geogebra
+## Obtention de l'exercice Geogebra
 
-A rédiger ...
+Vous pouvez au choix créer vous même l'exercice ou bien prendre un exercice déjà fait compatible moodle :
+
+- [Création d'un exercice Geogebra](https://github.com/DegrangeM/geogebra-moodle/wiki/Cr%C3%A9ation-d'un-exercice-Geogebra)
+
+- [Banque d'exercices déjà créés](https://github.com/DegrangeM/geogebra-moodle/wiki/Banque-d'exercices-d%C3%A9j%C3%A0-cr%C3%A9%C3%A9s)
 
 ## Génération du fichier GIFT
 
@@ -43,7 +47,7 @@ Il ne vous reste plus qu'à cocher la question précédemment importée, puis à
 
 ## Quelques remarques sur la configuration du test
 
-Il faut obligatoirement ne pas afficher plus d'un seul exercice learningapps à la fois dans le test moodle, il est donc conseillé de régler le test sur "1 question par page".
+<!-- Il faut obligatoirement ne pas afficher plus d'un seul exercice geogebra à la fois dans le test moodle, il est donc conseillé de régler le test sur "1 question par page". -->
 
 Il est conseillé de configurer le test sur "Feedback à postériori". Dans le cas contraire la validation d'un exercice entraînera un rechargement de la page qui fera perdre le travail en cours sur un exercice de la même page.
 
