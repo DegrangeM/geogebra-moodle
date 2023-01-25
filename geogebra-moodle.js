@@ -90,6 +90,11 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       if (!questionDiv.classList.contains('notyetanswered')) {
         this.afficherPopupDejaFait()
         appletOnLoad = (api) => {
+          if (api.getValueString('correction') !== '') {
+            iframe.classList.remove('geogebra-blur');
+            api.setAuxiliary('correction', true);
+            api.setValue('correction', 1);
+          }
         };
       } else {
         appletOnLoad = (api) => {
