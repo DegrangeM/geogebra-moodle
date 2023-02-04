@@ -26,9 +26,17 @@
             Nom de la variable Geogebra :<br />
             <input type="text" id="variable" value="grade" /><br /><br />
         </div>
-        <div>
+        <div style="margin-right: 50px;">
             Score maximum de la variable Geogebra :<br />
             <input type="number" id="maxscore" value="100" /><br /><br />
+        </div>
+        <div>
+            Gestion de l'aléatoire :<br />
+            <select id="graine">
+                <option value="auto" selected="selected">Aléatoiriser à chaque tentative</option>
+                <option value="-1">Aléatoiriser à chaque actualisation</option>
+                <option value="0">Ne pas aléatoiriser</option>
+            </select><br /><br />
         </div>
     </div>
     <button id="download">Obtenir le fichier GIFT à importer dans la banque de question Moodle</button>
@@ -42,13 +50,15 @@
                 const titre_exo = document.getElementById('titre_exo').value;
                 const variable = document.getElementById('variable').value || 'grade';
                 const maxscore = document.getElementById('maxscore').value || 100;
+                const graine = document.getElementById('graine').value || parseInt(Math.random()*1000 + 1); // Si graine = 0, alors on génère une graine fixe
                 const GIFT_VARIABLE = variable !== 'grade' ? ` variable\\="${giftEscape(variable)}"` : '';
                 const GIFT_MAXSCORE = maxscore !== 100 ? ` maxscore\\="${maxscore}"` : '';
+                const GIFT_GRAINE = graine !== 'auto' ? ` graine\\="${graine}"` : '';
 
                 const download_link = document.createElement('a');
                 const GIFT = `:: Geogebra - ${giftEscape(titre_exo)} ::
 <scr`+ `ipt src\\="${giftEscape(script_url)}" type\\="module"></scr` + `ipt>
-<geogebra-moodle app\\="${giftEscape(APP_ID)}"${GIFT_VARIABLE}${GIFT_MAXSCORE} />
+<geogebra-moodle app\\="${giftEscape(APP_ID)}"${GIFT_VARIABLE}${GIFT_MAXSCORE}${GIFT_GRAINE} />
 {
 =%100%100=%90%90=%80%80=%70%70=%60%60=%50%50=%40%40=%30%30=%20%20=%10%10=%0%0
 }`

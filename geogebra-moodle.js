@@ -54,15 +54,17 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
       // const shadow = this.attachShadow({ mode: 'open' }) // this.shadowRoot
 
       const iMoodle = window.GeogebraMoodleElements.length;
-      let SEED = false;
+      let SEED = this.getAttribute('graine') || 'auto'; // auto pour récupérer la graine depuis l'id de la question
 
       let questionDiv = this.parentNode
       // On remonte de parent en parent depuis la balise script jusqu'à trouver le div avec le numero de la question en id
       while (questionDiv !== null) { // s'arrêtera lorsqu'il n'y aura plus de parents
         if (typeof questionDiv.id === 'string' && questionDiv.id.startsWith('question-')) {
-          let m;
-          if(m = questionDiv.id.match(/^question-([0-9]+)-([0-9]+)$/)) {
-            SEED = parseInt(m[1]) + parseInt(m[2]);
+          if (SEED === 'auto') {
+            let m;
+            if(m = questionDiv.id.match(/^question-([0-9]+)-([0-9]+)$/)) {
+              SEED = parseInt(m[1]) + parseInt(m[2]);
+            }
           }
           break
         }
@@ -106,7 +108,9 @@ if (typeof window.GeogebraMoodleElements === 'undefined') {
           // api.setWidth(iframe.offsetWidth);
           api.setAuxiliary(VARIABLE, true);
           api.registerObjectUpdateListener(VARIABLE, () => {
-            api.evalCommand('SetSeed(' + SEED + ')');
+            if(SEED !== '-1') { // -1 on aléatoire à chaque actualisation donc pas de graine
+              api.evalCommand('SetSeed(' + SEED + ')');
+            } 
             /*
               SCORE / MAXSCORE => [0, 1]
               (SCORE/MAXSCORE) * 10 => [0, 10]
