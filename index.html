@@ -52,7 +52,7 @@
                 const maxscore = document.getElementById('maxscore').value || 100;
                 const graine = document.getElementById('graine').value || parseInt(Math.random()*1000 + 1); // Si graine = 0, alors on génère une graine fixe
                 const GIFT_VARIABLE = variable !== 'grade' ? ` variable\\="${giftEscape(variable)}"` : '';
-                const GIFT_MAXSCORE = maxscore !== 100 ? ` maxscore\\="${maxscore}"` : '';
+                const GIFT_MAXSCORE = maxscore !== '100' ? ` maxscore\\="${maxscore}"` : '';
                 const GIFT_GRAINE = graine !== 'auto' ? ` graine\\="${graine}"` : '';
 
                 const download_link = document.createElement('a');
