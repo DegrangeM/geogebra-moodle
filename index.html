@@ -46,7 +46,7 @@
                 const giftEscape = s => s.replace(/[~=#{}:]/g, '\\$&') // échappement des caratères spéciaux pour les GIFT
                 const script_url = document.getElementById('script_url').value;
                 const url_exo = new URL(document.getElementById('url_exo').value).href;
-                const APP_ID = url_exo.match(/https:\/\/www.geogebra.org\/(?:m|classic)\/(.*)$/)[1]
+                const APP_ID = url_exo.match(/https:\/\/www.geogebra.org\/(?:m|classic)\/(?:[a-zA-Z0-9]*#material\/)?([a-zA-Z0-9]*)$/)[1]
                 const titre_exo = document.getElementById('titre_exo').value;
                 const variable = document.getElementById('variable').value || 'grade';
                 const maxscore = document.getElementById('maxscore').value || 100;
