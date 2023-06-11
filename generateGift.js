@@ -4,12 +4,13 @@ try {
 }
 catch(e){}
 
-function createGiftGeogebraMoodle(options = {}) {
+function generateGiftGeogebraMoodle(options = {}) {
     let { titre_exo, script_url, APP_ID, variable, maxscore, graine } = options;
 
 
     typeof variable === 'undefined' && (variable = 'grade');
     typeof maxscore === 'undefined' && (maxscore = 100);
+    typeof graine === 'undefined' && (graine = 'auto');
     !graine && (graine = parseInt(Math.random()*1000 + 1)); // Si graine = 0, alors on génère une graine fixe;
     typeof script_url === 'undefined' && (script_url = defaultScriptUrl);
 
