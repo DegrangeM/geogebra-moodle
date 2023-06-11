@@ -27,7 +27,7 @@ function generateGiftGeogebraMoodle(options = {}) {
 {
 =%100%100=%90%90=%80%80=%70%70=%60%60=%50%50=%40%40=%30%30=%20%20=%10%10=%0%0
 }`
-    download_link.href = 'data:text/plain;charset=UTF-8,' + encodeURI(GIFT);
+    download_link.href = 'data:text/plain;charset=UTF-8,' + encodeURIComponent(GIFT);
     download_link.download = 'geogebra-moodle-' + titre_exo + '.gift.txt';
     download_link.click();
 }
