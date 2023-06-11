@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="generateGift.js"></script>
+    <input type="button" id="genererGift" value="Générer">
+    <script>
+        document.getElementById('genererGift').addEventListener('click', function () {
+            let params = location.hash.split('|');
+            if (params.length == 2) {
+                params[0] = params[0].substring(1).replaceAll(/[^a-zA-Z0-9]/g, '');
+                let span = document.createElement('span');
+                span.textContent = params[1];
+                params[1] = span.innerHTML;
+                generateGiftGeogebraMoodle({ titre_exo: params[1], APP_ID: params[0], variable: 'score', maxscore: 10 });
+            } else {
+                alert('Erreur de paramètres');
+            }
+        });
+    </script>
+</body>
+
+</html>
